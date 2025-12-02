@@ -50,7 +50,7 @@ public class App {
         System.out.print(prompt);
         String input = scanner.nextLine();
         while (!ifNumber(input)) {
-            System.out.print("Invalid input. " + prompt);
+            System.out.print("Invalid input. \n" + prompt);
             input = scanner.nextLine();
         }
         return Integer.parseInt(input);
