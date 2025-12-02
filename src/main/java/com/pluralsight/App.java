@@ -29,7 +29,6 @@ public class App {
         System.out.println("\t3) Display all Categories ");
         System.out.println("\t0) Exit");
 
-
     }
 
     private static String getUserInput(String prompt) {
@@ -169,6 +168,13 @@ public class App {
     private static void exit() {
         System.out.println("Goodbye!");
         System.exit(0);
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
