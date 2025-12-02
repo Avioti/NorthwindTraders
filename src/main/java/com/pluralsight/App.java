@@ -30,7 +30,17 @@ public class App {
         System.out.println("\t0) Exit");
 
     }
+    public static boolean ifNumber(String str) {
+        try {
 
+            Integer.parseInt(str);
+            return true;
+
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
     private static String getUserInput(String prompt) {
         System.out.print(prompt + ": ");
         return scanner.nextLine();
@@ -39,6 +49,10 @@ public class App {
     private static int getUserIntInput(String prompt) {
         System.out.print(prompt);
         String input = scanner.nextLine();
+        while (!ifNumber(input)) {
+            System.out.print("Invalid input. " + prompt);
+            input = scanner.nextLine();
+        }
         return Integer.parseInt(input);
 
     }
@@ -134,7 +148,9 @@ public class App {
     private static void run() {
         while (true) {
             menu();
-            switch (getUserIntInput("Select an option: ")) {
+            int option = getUserIntInput("Select an option: ");
+
+            switch (option) {
                 case 1:
                     queryProducts();
                     break;
