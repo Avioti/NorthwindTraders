@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.mysql.cj.Query;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.net.ConnectException;
 import java.sql.*;
@@ -172,8 +173,13 @@ public class App {
     }
 
     public static void loadConnection(String username, String password) {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            connection = dataSource.getConnection();
         } catch (SQLException e) {
             System.out.println("Error when loading connection; Restart app to try again.");
             e.printStackTrace();
